@@ -1,0 +1,12 @@
+1. Create instance
+2. Update hostname with " sudo hostnamectl set-hostname ansible-master " then " sudo -i "
+3. Create user with " adduser *username* " then " passwd *username* "
+4. Update sshd_config file to allow user with " passwordauthentication yes "
+5. Restart sshd with " systemctl restart sshd "
+6. update " visudo " file by adding the line as " *username* ALL=(ALL)  NOPASSWD= ALL "
+7. update slave host IP (Private/Public) in ansible master node under /etc/hosts file.
+8. update ansible.cfg file by defining user and inventory file like below:
+
+	   [defaults]
+	   inventory = hosts
+	   remote_user = *username*

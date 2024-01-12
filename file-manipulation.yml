@@ -1,0 +1,29 @@
+---
+- name: File Manipulation
+  hosts: test
+
+  tasks:
+    - name: Create a sample text file
+      file:
+        path: /home/ansible/sample.txt
+        state: touch
+        mode: u=rw,g=r,o=r
+
+    - name: Writing some contect to the file
+      lineinfile:
+        path: /home/ansible/sample.txt
+        line: 'New line added at the bottom'
+    
+    - name: Update line at the top of file
+      lineinfile:
+        path: /home/ansible/sample.txt
+        line: 'Line has been updated at the top of file'
+        insertbefore: BOF
+
+    - name: Update file contents with block/many of lines
+      blockinfile:
+        dest: /home/ansible/sample.txt
+        block: |
+          Hello Surendra,
+          congrats for you to block for DevOps Project.
+          Keep doing good.

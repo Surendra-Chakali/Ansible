@@ -1,0 +1,14 @@
+---
+- name: Execute shell script on Server
+  hosts: test
+
+  tasks:
+    - name: Copying shel file to server
+      copy:
+        src: /etc/ansible/practise/sampleshell.sh
+        dest: /home/ansible
+        mode: u=rwx,g=rwx,o=r
+        owner: ansible
+
+    - name: Execute sampleshell.sh
+      shell: /home/ansible/sampleshell.sh

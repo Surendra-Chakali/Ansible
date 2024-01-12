@@ -1,0 +1,21 @@
+---
+- name: Launching new EC2 Instance in aws
+  hosts: localhost
+    
+  tasks:
+    - name: new EC2
+      ec2_instance:
+        name: "ansible-slave2"
+        image_id: ami-0e5f882be1900e43b
+        key_name: "ansible-keypair"
+        instance_type: t2.micro
+        count: 2
+        vpc_subnet_id: subnet-06cb64ae181e66273
+        network:
+          assign_public_ip: yes
+        wait: yes
+        security_group: demo-sg
+        region: eu-west-2
+        aws_access_key: AKIA3DFKRLEZ22XZU33R
+        aws_secret_key: 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
+        state: terminated
